@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Resi Ella Sicat | Computer Engineering Portfolio</title>
+<meta name="description" content="Portfolio of Resi Ella R. Sicat, BS Computer Engineering student at Holy Angel University. Try live demos of her thesis, robots, APIs, and hardware projects.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🪞</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<a class="sr-only" href="#app">Skip to content</a>
+
+<nav class="nav" aria-label="Main">
+  <div class="wrap">
+    <a href="#/" class="mark"><img src="assets/img/resi.jpg" alt="">Resi Ella</a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#/" data-nav="home">Home</a></li>
+      <li><a href="#/projects" data-nav="projects">Projects</a></li>
+      <li><a href="#/about" data-nav="about">About</a></li>
+      <li><a href="#/contact" data-nav="contact">Contact</a></li>
+    </ul>
+    <div class="nav-right">
+      <button class="icon-btn" id="themeBtn" type="button" aria-label="Switch color theme">◐</button>
+      <button class="icon-btn menu-btn" id="menuBtn" type="button" aria-label="Open menu" aria-expanded="false">☰</button>
+      <a class="btn small" href="#/contact">Get in touch</a>
+    </div>
+  </div>
+</nav>
+
+<main id="app" tabindex="-1"></main>
+
+<footer>
+  <div class="wrap">
+    <span>Resi Ella R. Sicat, BS Computer Engineering, Holy Angel University</span>
+    <span><a href="https://github.com/esir-ops" target="_blank" rel="noopener">GitHub</a> &nbsp;|&nbsp; <a href="mailto:re.sicat.3104@gmail.com">re.sicat.3104@gmail.com</a></span>
+  </div>
+</footer>
+
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
+  <button type="button" id="lbClose">Close</button>
+  <div><img id="lbImg" alt=""><p id="lbCap"></p></div>
+</div>
+
+<script src="js/data.js"></script>
+<script src="js/demo-aim.js"></script>
+<script src="js/demo-vending.js"></script>
+<script src="js/demo-trivia.js"></script>
+<script src="js/demo-blood.js"></script>
+<script src="js/demo-robo.js"></script>
+<script src="js/demo-sentry.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
