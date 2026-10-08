@@ -1,4 +1,4 @@
-# Resi Ella Sicat | Portfolio
+# Resi Ella R. Sicat | Portfolio
 
 This is my portfolio site: https://esir-ops.github.io/
 

@@ -1,4 +1,4 @@
-/* Resi Ella Sicat portfolio: router, pages, shared UI */
+/* Resi Ella R. Sicat portfolio: router, pages, shared UI */
 (function () {
   const $ = (s, el = document) => el.querySelector(s);
   const app = $('#app');
@@ -14,7 +14,7 @@
   const PROJECTS = [
     {
       slug: 'aim-beautiful', title: "AI'm Beautiful", kind: 'Thesis / Capstone, Lead Developer', date: '2026 to present',
-      cats: ['ai', 'web', 'hardware'], thumb: 'assets/img/aim/look.jpg', thumbPos: '50% 8%', badge: 'Live demo',
+      cats: ['ai', 'web', 'hardware'], thumb: 'assets/img/aim/look.jpg', trio: ['assets/img/aim/welcome.jpg', 'assets/img/aim/look.jpg', 'assets/img/aim/focal.jpg'], badge: 'Live demo',
       summary: 'A smart mirror that reads your skin tone, recommends local makeup shades, and guides you step by step with AR outlines.',
       repo: GH + '/AIm_Beautiful', live: 'https://esir-ops.github.io/AIm_Beautiful/', wide: true
     },
@@ -62,17 +62,17 @@
   const CAT_LABELS = { all: 'All projects', ai: 'AI and vision', web: 'Web and backend', hardware: 'Hardware and embedded', network: 'Networking' };
 
   const ART = {
-    quiz: { bg: '#E8E3F6', fg: '#4B3B8F', text: '38 endpoints' },
-    vend: { bg: '#0F2A1E', fg: '#7CF5B0', text: '₱20' },
-    blood: { bg: '#F7DCE5', fg: '#B3263F', text: 'O+' },
-    net: { bg: '#DDEBF5', fg: '#24597F', text: '5 VLANs' },
-    lms: { bg: '#EFE7D8', fg: '#6B4E1E', text: 'LMS' },
-    dj: { bg: '#E1EEE6', fg: '#1F5C3E', text: 'Django' }
+    quiz: { tone: 'lilac', text: '38', sub: 'endpoints' },
+    vend: { tone: 'plum', text: '₱20', sub: 'item price' },
+    blood: { tone: 'rose', text: '56', sub: 'day rule' },
+    lms: { tone: 'champ', text: 'LMS', sub: 'Hauvas++' },
+    dj: { tone: 'lilac', text: 'Django', sub: 'first portfolio' }
   };
   function thumbHTML(p) {
+    if (p.trio) return `<div class="thumb-trio">${p.trio.map(s => `<img src="${s}" alt="" loading="lazy">`).join('')}</div>`;
     if (p.thumb) return `<img src="${p.thumb}" alt="" loading="lazy"${p.thumbPos ? ` style="object-position:${p.thumbPos}"` : ''}>`;
     const a = ART[p.art] || ART.quiz;
-    return `<div class="thumb-art" style="background:${a.bg};color:${a.fg};font-size:${a.text.length > 6 ? 'clamp(28px,3.4vw,40px)' : 'clamp(34px,5vw,54px)'};text-align:center;padding:0 16px">${a.text}</div>`;
+    return `<div class="thumb-art t-${a.tone}"><b>${a.text}</b><small>${a.sub}</small></div>`;
   }
   function cardHTML(p) {
     const href = p.external ? p.repo : `#/projects/${p.slug}`;
@@ -92,7 +92,7 @@
       <section class="hero">
         <div>
           <p class="hello">Hi, I'm</p>
-          <h1><span>Resi Ella</span><span>Sicat.</span></h1>
+          <h1 class="name"><span>Resi Ella</span><span><em>R. Sicat</em></span></h1>
           <p class="lede">I'm a fourth-year <strong>Computer Engineering</strong> student at Holy Angel University. I build things that sit between software and hardware: web apps, APIs, robots, IoT networks, and right now, <strong>a smart mirror that teaches you how to do your makeup.</strong></p>
           <div class="actions">
             <a class="btn" href="#/projects">Explore my projects</a>
@@ -101,7 +101,7 @@
           <div class="meta"><span><b>Based in</b> Angeles City, Pampanga</span><span><b>Looking for</b> OJT, Nov 2026</span></div>
         </div>
         <div class="mirror-zone">
-          <div class="mirror"><div class="glass"><img src="assets/img/resi.jpg" alt="Portrait of Resi Ella Sicat"><canvas id="mesh" aria-hidden="true"></canvas></div></div>
+          <div class="mirror"><div class="glass"><img src="assets/img/resi.jpg" alt="Portrait of Resi Ella R. Sicat"><canvas id="mesh" aria-hidden="true"></canvas></div></div>
           <p class="mirror-note" id="meshNote">Move your cursor over the mirror. The dots mimic the face mesh my thesis uses to track a face in real time.</p>
           <button class="chip-btn" type="button" id="meshToggle" aria-pressed="true" style="margin-top:10px">Hide face mesh</button>
         </div>
@@ -370,9 +370,9 @@
     else { nav = ''; page404(); }
     document.querySelectorAll('[data-nav]').forEach(a => { if (a.dataset.nav === nav) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current'); });
     $('#navLinks').classList.remove('open'); $('#menuBtn').setAttribute('aria-expanded', 'false');
-    const titles = { home: 'Resi Ella Sicat | Portfolio', projects: 'Projects | Resi Ella Sicat', about: 'About | Resi Ella Sicat', contact: 'Contact | Resi Ella Sicat' };
+    const titles = { home: 'Resi Ella R. Sicat | Portfolio', projects: 'Projects | Resi Ella R. Sicat', about: 'About | Resi Ella R. Sicat', contact: 'Contact | Resi Ella R. Sicat' };
     const pj = PROJECTS.find(p => p.slug === parts[1]);
-    document.title = pj ? `${pj.title} | Resi Ella Sicat` : (titles[nav] || 'Resi Ella Sicat');
+    document.title = pj ? `${pj.title} | Resi Ella R. Sicat` : (titles[nav] || 'Resi Ella R. Sicat');
     window.scrollTo(0, 0);
     app.focus({ preventScroll: true });
   }
