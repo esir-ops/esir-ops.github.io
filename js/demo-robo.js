@@ -27,7 +27,7 @@
     show('race');
   }
 
-  /* ---------- Shared drawing ---------- */
+  // Shared drawing
   function setupCanvas(cv) {
     const dpr = Math.min(devicePixelRatio || 1, 2);
     cv.width = W * dpr; cv.height = H * dpr;
@@ -57,7 +57,7 @@
   function blockRow(cls, inner, removable) { return `<li class="block ${cls}">${inner}${removable ? '<button class="x" type="button" aria-label="Remove block">×</button>' : ''}</li>`; }
   const dirSel = v => `<select data-f="dir">${['forward', 'backward', 'stop'].map(d => `<option ${d === v ? 'selected' : ''}>${d}</option>`).join('')}</select>`;
 
-  /* ---------- RaceBot ---------- */
+  // RaceBot
   function raceBot(pane) {
     const PRESETS = {
       'Turn left': [{ t: 'motor', a: 'backward', as: 5, b: 'forward', bs: 5 }, { t: 'delay', s: 0.9 }, { t: 'motor', a: 'forward', as: 7, b: 'forward', bs: 7 }, { t: 'delay', s: 1.2 }],
@@ -148,7 +148,7 @@
     return () => { running = false; cancelAnimationFrame(raf); };
   }
 
-  /* ---------- SensingBot ---------- */
+  // SensingBot
   function sensingBot(pane) {
     const OBJ = {
       book: { label: 'White book', fill: '#FAFAF7', stroke: '#C9CDD6', reflect: 0.95, w: 70, h: 52 },
@@ -255,7 +255,7 @@
     return () => { running = false; cancelAnimationFrame(raf); };
   }
 
-  /* ---------- Boxing Bot ---------- */
+  // Boxing Bot
   function boxingBot(pane) {
     pane.innerHTML = `
       <div class="robo">

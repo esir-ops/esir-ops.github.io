@@ -10,7 +10,7 @@
   };
   window.PStore = store;
 
-  /* ---------- Project registry ---------- */
+  // Project registry
   const PROJECTS = [
     {
       slug: 'aim-beautiful', title: "AI'm Beautiful", kind: 'Thesis / Capstone, Lead Developer', date: '2026 to present',
@@ -84,7 +84,7 @@
     </a>`;
   }
 
-  /* ---------- Pages ---------- */
+  // Pages
   function pageHome() {
     const featured = PROJECTS.filter(p => !p.external).slice(0, 5);
     app.innerHTML = `
@@ -355,7 +355,7 @@
     app.innerHTML = `<div class="wrap page"><h2>Page not found</h2><p class="lede" style="margin:16px 0 24px">That page doesn't exist. Head back to the projects list to find what you need.</p><a class="btn" href="#/projects">Go to projects</a></div>`;
   }
 
-  /* ---------- Router ---------- */
+  // Router
   function route() {
     const h = location.hash.replace(/^#/, '') || '/';
     if (h === 'demo') return; // in-page anchor
@@ -383,7 +383,7 @@
   });
   window.addEventListener('hashchange', route);
 
-  /* ---------- Lightbox ---------- */
+  // Lightbox
   const lb = $('#lightbox');
   function openLB(src, cap) { $('#lbImg').src = src; $('#lbImg').alt = cap; $('#lbCap').textContent = cap; lb.classList.add('open'); $('#lbClose').focus(); }
   function closeLB() { lb.classList.remove('open'); }
@@ -396,7 +396,7 @@
   $('#lbClose').addEventListener('click', closeLB);
   lb.addEventListener('click', e => { if (e.target === lb) closeLB(); });
 
-  /* ---------- Theme + menu ---------- */
+  // Theme + menu
   const savedTheme = store.get('pf-theme', null);
   if (savedTheme) document.documentElement.setAttribute('data-theme', savedTheme);
   $('#themeBtn').addEventListener('click', () => {
@@ -409,7 +409,7 @@
     $('#menuBtn').setAttribute('aria-expanded', String(open));
   });
 
-  /* ---------- Hero face mesh ---------- */
+  // Hero face mesh
   function initMesh() {
     const canvas = document.getElementById('mesh'); if (!canvas) return;
     const glass = canvas.parentElement, ctx = canvas.getContext('2d');

@@ -8,10 +8,10 @@
   const FOCAL_TO_STEP = { lips: 'lips', eyebrows: 'eyebrows', cheeks: 'blush', contour: 'contour' };
   const TONES = ['light_warm', 'light_cool', 'medium_warm', 'medium_cool', 'dark_warm', 'dark_cool'];
 
-  /* ---- Same STATE fields the thesis app uses ---- */
+  // Same STATE fields the thesis app uses
   const STATE = { toneKey: 'medium_warm', look: 'date_casual_glam', focal: 'lips', style: null, shades: null, foundationData: null, lookData: D.looks, focalData: D.focal };
 
-  /* ---- Ported from app.js: brand library merge ---- */
+  // Ported from app.js: brand library merge
   function loadShades() {
     STATE.shades = JSON.parse(JSON.stringify(D.shades));
     STATE.foundationData = JSON.parse(JSON.stringify(D.foundations));
@@ -34,7 +34,7 @@
     return n;
   }
 
-  /* ---- Ported from app.js: one best product per category ---- */
+  // Ported from app.js: one best product per category
   const LOOK_BOLDNESS = { school: 0.20, professional: 0.44, date_casual_glam: 0.64, party_glam: 0.88 };
   const CATEGORY_BOLD = { lips: 1.00, blush: 0.80, eyebrows: 0.90, contour: 0.70, foundation: 0.05 };
   function lookBoldness(step) { const b = LOOK_BOLDNESS[STATE.look]; return Math.min(1, (typeof b === 'number' ? b : 0.55) * (CATEGORY_BOLD[step] ?? 0.85)); }
@@ -56,7 +56,7 @@
   }
   function selectBestSet(tone) { if (!tone) return tone; const out = {}; STEPS.forEach(s => { const b = bestProduct(tone[s], s); if (b) out[s] = b; }); return out; }
 
-  /* ---- Ported from app.js: look + style intensity ---- */
+  // Ported from app.js: look + style intensity
   function currentLook() { return (STATE.look && STATE.lookData?.[STATE.look]) || null; }
   function lookIntensity(step) { const m = currentLook()?.intensity?.[step]; return (typeof m === 'number' && m > 0) ? Math.min(1, m) : 1; }
   function lookNote(step) { const l = currentLook(); if (!l) return ''; const focalStep = STATE.focalData?.[STATE.focal]?.mapStep || FOCAL_TO_STEP[STATE.focal]; return (step === focalStep ? l.focalGuide?.[step] : null) || l.guide?.[step] || ''; }
@@ -69,8 +69,8 @@
   }
   function formatTone(k) { return { light_warm: 'Light Warm', light_cool: 'Light Cool', medium_warm: 'Medium Warm', medium_cool: 'Medium Cool', dark_warm: 'Deep Warm', dark_cool: 'Deep Cool' }[k] || k; }
 
-  /* ---- Ported verbatim from app.js: skin tone detection ---- */
-  // ── Skin tone ──
+  // Ported verbatim from app.js: skin tone detection
+  // Skin tone
   // The whites of the eyes are close to neutral for everyone, so any tint there comes
   // from the lighting. It's used to white-balance the skin sample (Mbatha et al.).
 function sampleScleraWhite(ctx, lm, vW, vH) {
@@ -142,12 +142,12 @@ function detectToneFromImage(image, lm, W, H) {
       if(n) samples.push({r:r/n,g:g/n,b:b/n});
     });
     if (!samples.length) return 'medium_warm';
-    // Median per channel - robust to a single shadowed point, stray hair, or a
+    // Median per channel, robust to a single shadowed point, stray hair, or a
     // glasses frame crossing a sample.
     const med=k=>{const a=samples.map(s=>s[k]).sort((p,q)=>p-q);return a[a.length>>1];};
     let r=med('r'), g=med('g'), b=med('b');
 
-    // ── Lighting normalisation against the neutral sclera reference ──
+    // Lighting normalisation against the neutral sclera reference
     const white=sampleScleraWhite(ctx, lm, vW, vH);
     if (white){
       // 1. Colour cast: per-channel gains that turn the reference grey (von Kries).
@@ -168,7 +168,7 @@ function detectToneFromImage(image, lm, W, H) {
 
     const br=r*.299+g*.587+b*.114;
 
-    // ── Tone level ──
+    // Tone level
     // Skin brightness relative to the sclera, so exposure cancels out.
     let level;
     if (white && !white.clipped){
@@ -189,7 +189,7 @@ function detectToneFromImage(image, lm, W, H) {
 }
 
 
-  /* ---- Fallback when FaceMesh can't load: sample a clicked point ---- */
+  // Fallback when FaceMesh can't load: sample a clicked point
   function classifyRGB(r, g, b) {
     const br = r * .299 + g * .587 + b * .114;
     const level = br > 178 ? 'light' : br > 128 ? 'medium' : 'dark';
@@ -197,7 +197,7 @@ function detectToneFromImage(image, lm, W, H) {
     return `${level}_${undertone}`;
   }
 
-  /* ---- FaceMesh loader (same CDN and options as the thesis app) ---- */
+  // FaceMesh loader (same CDN and options as the thesis app)
   let meshPromise = null;
   function loadFaceMesh() {
     if (meshPromise) return meshPromise;
