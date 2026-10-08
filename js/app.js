@@ -64,8 +64,8 @@
   const ART = {
     quiz: { tone: 'lilac', text: '38', sub: 'endpoints' },
     vend: { tone: 'plum', text: '₱20', sub: 'item price' },
-    blood: { tone: 'rose', text: '56', sub: 'day rule' },
-    lms: { tone: 'champ', text: 'LMS', sub: 'Hauvas++' },
+    blood: { tone: 'rose', text: 'O+', sub: 'blood type' },
+    lms: { tone: 'sand', text: 'LMS', sub: 'Hauvas++' },
     dj: { tone: 'lilac', text: 'Django', sub: 'first portfolio' }
   };
   function thumbHTML(p) {
@@ -92,7 +92,7 @@
       <section class="hero">
         <div>
           <p class="hello">Hi, I'm</p>
-          <h1 class="name"><span>Resi Ella</span><span><em>R. Sicat</em></span></h1>
+          <h1><span>Resi Ella</span><span>R. Sicat.</span></h1>
           <p class="lede">I'm a fourth-year <strong>Computer Engineering</strong> student at Holy Angel University. I build things that sit between software and hardware: web apps, APIs, robots, IoT networks, and right now, <strong>a smart mirror that teaches you how to do your makeup.</strong></p>
           <div class="actions">
             <a class="btn" href="#/projects">Explore my projects</a>
